@@ -1,0 +1,89 @@
+//! CLASS
+import Timer from "./timer.js";
+import { languages } from "./languages.js";
+
+//! VARIABLES DECLARATION
+
+const languageBtn = document.querySelector(".language-click");
+const showLanguage = document.querySelectorAll(".language");
+const settingsBtn = document.querySelector(".settings-btn");
+const closeBtn = document.querySelector(".close-btn");
+const settingsMenu = document.querySelector(".settings-menu");
+const modal = document.querySelector(".modal");
+const app = document.querySelector(".app");
+let root = document.documentElement;
+let lang = "en";
+let endTimer = "0";
+let reload = true;
+let newTimer = new Timer(endTimer, reload, lang);
+const colorText = document.querySelectorAll(".text");
+//? COLORS
+const mainColors = ["358", "145", "60", "231", "18"];
+
+//! EVENT LISTENERS
+
+app.addEventListener("click", callEvent);
+settingsBtn.addEventListener("click", () => {
+  settingsMenu.classList.toggle("active");
+  modal.classList.toggle("active");
+});
+closeBtn.addEventListener("click", () => {
+  settingsMenu.classList.toggle("active");
+  modal.classList.toggle("active");
+});
+settingsMenu.addEventListener("click", translate);
+languageBtn.addEventListener("click", () => {
+  showLanguage.forEach((element) => {
+    element.classList.toggle("active");
+  });
+});
+colorText.forEach((element, index) => {
+  let i = index;
+  element.addEventListener("click", () => {
+    localStorage.setItem("current color", mainColors[i]);
+    location.reload();
+  });
+});
+window.addEventListener("load", () => {
+  let currentColor = localStorage.getItem("current color");
+  root.style.setProperty("--main-color", currentColor);
+});
+
+//! FUNCTIONS
+
+function callEvent(e) {
+  let event = e.target.innerText;
+  if (event === languages[lang]["start"]) {
+    newTimer.startTimer();
+  } else if (event === languages[lang]["stop"]) {
+    newTimer.callPauseTimer();
+  } else if (event === languages[lang]["resume"]) {
+    newTimer.callResume();
+  } else if (event === languages[lang]["focus_mode"]) {
+    newTimer.callFocus();
+  } else if (event === languages[lang]["break_mode"]) {
+    newTimer.callBreak();
+  } else if (event === languages[lang]["fast_forward"]) {
+    newTimer.callFastForward();
+  } else if (event === languages[lang]["restart"]) {
+    newTimer.callRestart();
+  }
+}
+
+function translate(e) {
+  const translatedWords = document.querySelectorAll(".lang");
+  let x;
+  if (e.target.innerText === "Italian") {
+    x = "it";
+  } else if (e.target.innerText === "English") {
+    x = "en";
+  } else {
+    return;
+  }
+  translatedWords.forEach((element) => {
+    let key = element.id;
+    element.innerText = languages[x][key];
+  });
+  lang = x;
+  document.documentElement.setAttribute("lang", x);
+}

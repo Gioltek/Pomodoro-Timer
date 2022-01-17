@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7fe2061a81.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;500;700;900&family=Rubik:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Pomodoro Timer</title>
+</head>
+
+<body class="preload">
+    <header>
+        <nav>
+            <div class="logo">
+                <img class="logo-img" src="./logo.png" alt="logo">
+                <div class="logo-text">
+                    <h1 class="logo-title">Pomodoro</h1>
+                    <h1 class="logo-title">Timer</h1>
+                </div>
+            </div>
+            <div class="navbar">
+                <div class="modal">
+                    <div class="settings-menu">
+                        <div>
+                            <h4 class="language-click">LANGUAGES</h4>
+                            <div class="language-setting">
+                                <p class="language">English</p>
+                                <p class="language">Italian</p>
+                            </div>
+                        </div>
+                        <div class="grid-container">
+                            <h4 class="color-click" class="lang" id="focus_mode">COLORS</h4>
+                            <p class="red text lang" id="first_theme">RED/LIGHTBLUE</p>
+                            <p class="green text lang" id="second_theme">GREEN/PURPLE</p>
+                            <p class="yellow text lang" id="third_theme">YELLOW/PURPLE</p>
+                            <p class="blue text lang" id="fourth_theme">BLUE/YELLOW</p>
+                            <p class="orange text lang" id="fifth_theme">ORANGE/BLUE</p>
+                            <div class="red-box box"></div>
+                            <div class="lightblue-box box"></div>
+                            <div class="green-box box"></div>
+                            <div class="purple-box box"></div>
+                            <div class="yellow-box box"></div>
+                            <div class="purple2-box box"></div>
+                            <div class="blue-box box"></div>
+                            <div class="yellow2-box box"></div>
+                            <div class="orange-box box"></div>
+                            <div class="blue2-box box"></div>
+                        </div>
+
+                        <i class="fas fa-times close-btn"></i>
+                    </div>
+                </div>
+                <button class="settings-btn"><i class="fas fa-cog"></i></button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="app">
+            <div class="timer">
+                <h1>25:00</h1>
+            </div>
+            <div class="btns-container">
+                <button class="start btn">
+                    <p lang="en" class="lang" id="start">START</p>
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="mode">
+                    <button class="focus-mode btn">
+                        <i class="fas fa-brain"></i>
+                        <p lang="en" class="lang" id="focus_mode">FOCUS MODE</p>
+                    </button>
+                    <button class="break-mode btn">
+                        <i class="fas fa-bed"></i>
+                        <p lang="en" class="lang" id="break_mode">BREAK MODE</p>
+                    </button>
+                </div>
+                <div class="mode">
+                    <button class="forward btn">
+                        <i class="fas fa-fast-forward"></i>
+
+                        <p lang="en" class="lang" id="fast_forward">FAST FORWARD</p>
+                    </button>
+                    <button class="restart btn">
+                        <i class="fas fa-redo"></i>
+                        <p lang="en" class="lang" id="restart">RESTART</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="./js/app.js" type="module"></script>
+
+</body>
+
+</html>
