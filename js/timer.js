@@ -8,8 +8,11 @@ const colorText = document.querySelectorAll(".text");
 let currColorIndex =
   localStorage.getItem("index") === null ? 0 : localStorage.getItem("index");
 
+//? SOUNDS
 const music = new Audio("./Sounds/lofi.m4a");
 music.volume = 0.02;
+const trill = new Audio("./Sounds/trill.mp3");
+trill.volume = 0.2;
 
 export default class Timer {
   constructor(endTimer, reload, currColorIndex) {
@@ -55,6 +58,9 @@ export default class Timer {
     if (this.remainingTime < 0) {
       timer.innerHTML = `<h1>00:00</h1>`;
       music.pause();
+      if (this.isRestarted != true) {
+        trill.play();
+      }
       this.clearInterval();
       if (this.isFocus === true) {
         start.innerHTML = `
@@ -138,7 +144,9 @@ export default class Timer {
 
   callRestart() {
     this.endTimer = "0";
+    this.isRestarted = true;
     this.displayTime();
+    this.isRestarted = false;
     if (this.isFocus === true) {
       this.callFocus();
     } else {
