@@ -5,7 +5,8 @@ const timer = document.querySelector(".timer");
 const start = document.querySelector(".start");
 let root = document.documentElement;
 const colorText = document.querySelectorAll(".text");
-let currColorIndex = localStorage.getItem("index");
+let currColorIndex =
+  localStorage.getItem("index") === null ? 0 : localStorage.getItem("index");
 
 export default class Timer {
   constructor(endTimer, reload, currColorIndex) {
