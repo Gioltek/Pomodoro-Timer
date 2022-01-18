@@ -8,6 +8,9 @@ const colorText = document.querySelectorAll(".text");
 let currColorIndex =
   localStorage.getItem("index") === null ? 0 : localStorage.getItem("index");
 
+const music = new Audio("./Sounds/lofi.m4a");
+music.volume = 0.02;
+
 export default class Timer {
   constructor(endTimer, reload, currColorIndex) {
     this.endTimer = endTimer;
@@ -51,6 +54,7 @@ export default class Timer {
     }
     if (this.remainingTime < 0) {
       timer.innerHTML = `<h1>00:00</h1>`;
+      music.pause();
       this.clearInterval();
       if (this.isFocus === true) {
         start.innerHTML = `

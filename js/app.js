@@ -19,6 +19,9 @@ let newTimer = new Timer(endTimer, reload, lang);
 const colorText = document.querySelectorAll(".text");
 //? COLORS
 const mainColors = ["358", "145", "60", "231", "18"];
+//? SOUNDS
+const music = new Audio("./Sounds/lofi.m4a");
+music.volume = 0.02;
 
 //! EVENT LISTENERS
 
@@ -55,18 +58,30 @@ function callEvent(e) {
   let event = e.target.innerText;
   if (event === languages[lang]["start"]) {
     newTimer.startTimer();
+    setTimeout(() => {
+      playRandomMusic();
+    }, 300);
+    playClick();
   } else if (event === languages[lang]["stop"]) {
     newTimer.callPauseTimer();
+    music.pause();
+    playClick();
   } else if (event === languages[lang]["resume"]) {
     newTimer.callResume();
+    unpause();
+    playClick();
   } else if (event === languages[lang]["focus_mode"]) {
     newTimer.callFocus();
+    music.pause();
   } else if (event === languages[lang]["break_mode"]) {
     newTimer.callBreak();
+    music.pause();
   } else if (event === languages[lang]["fast_forward"]) {
     newTimer.callFastForward();
+    music.pause();
   } else if (event === languages[lang]["restart"]) {
     newTimer.callRestart();
+    music.pause();
   }
 }
 
@@ -86,4 +101,25 @@ function translate(e) {
   });
   lang = x;
   document.documentElement.setAttribute("lang", x);
+}
+
+function playRandomMusic() {
+  if (newTimer.isFocus === false) return;
+  let random = Math.floor(Math.random() * 6000);
+  music.currentTime = random;
+  music.play();
+}
+function unpause() {
+  if (newTimer.isFocus === false) return;
+  music.play();
+}
+
+function playClick() {
+  const click = new Audio("./Sounds/click.mp3");
+  click.volume = 0.1;
+  click.preload = "auto";
+  click.load();
+  let clickSound = click.cloneNode();
+  clickSound.volume = 0.1;
+  clickSound.play();
 }
