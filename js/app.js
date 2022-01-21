@@ -18,10 +18,12 @@ let reload = true;
 let newTimer = new Timer(endTimer, reload, lang);
 const colorText = document.querySelectorAll(".text");
 //? COLORS
-const mainColors = ["358", "145", "60", "231", "18"];
+const mainColors = ["358", "155", "45", "231", "18"];
 //? SOUNDS
 const music = new Audio("./Sounds/lofi.m4a");
-music.volume = 0.02;
+music.volume = 0.05;
+const volumeBtn = document.querySelector(".volume-btn");
+const volumeBar = document.querySelector("#volume-bar");
 
 //! EVENT LISTENERS
 
@@ -50,6 +52,12 @@ colorText.forEach((element, index) => {
 window.addEventListener("load", () => {
   let currentColor = localStorage.getItem("current color");
   root.style.setProperty("--main-color", currentColor);
+});
+volumeBtn.addEventListener("click", toggleAudio);
+volumeBar.addEventListener("input", (e) => {
+  music.volume = e.currentTarget.value / 1000;
+  console.log(music.volume);
+  console.log(e.currentTarget.value);
 });
 
 //! FUNCTIONS
@@ -85,6 +93,8 @@ function callEvent(e) {
   }
 }
 
+//? TRANSLATION FUNCTIONS
+
 function translate(e) {
   const translatedWords = document.querySelectorAll(".lang");
   let x;
@@ -102,6 +112,8 @@ function translate(e) {
   lang = x;
   document.documentElement.setAttribute("lang", x);
 }
+
+//? SOUND FUNCTIONS
 
 function playRandomMusic() {
   if (newTimer.isFocus === false) return;
@@ -122,4 +134,17 @@ function playClick() {
   let clickSound = click.cloneNode();
   clickSound.volume = 0.1;
   clickSound.play();
+}
+
+function toggleAudio() {
+  let icon = volumeBtn.children[0];
+  if (icon.classList.contains("fa-volume-up")) {
+    icon.classList.remove("fa-volume-up");
+    icon.classList.add("fa-volume-mute");
+    music.volume = 0;
+  } else {
+    icon.classList.add("fa-volume-up");
+    icon.classList.remove("fa-volume-mute");
+    music.volume = 0.3;
+  }
 }

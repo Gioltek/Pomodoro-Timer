@@ -161,7 +161,7 @@ export default class Timer {
 
   checkTheme(theme) {
     console.log(currColorIndex);
-    const mainColors = ["358", "145", "60", "231", "18"];
+    const mainColors = ["358", "155", "45", "231", "18"];
     const secondaryColors = ["194", "283", "283", "50", "230"];
     let mainColor;
     if (theme === "main") {

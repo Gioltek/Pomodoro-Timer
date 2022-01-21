@@ -166,6 +166,7 @@ nav {
   opacity: 0;
   transition-duration: 300ms;
   pointer-events: none;
+  z-index: 2;
 }
 .modal.active {
   opacity: 1;
@@ -212,10 +213,60 @@ nav {
 }
 
 .language-click,
-.color-click {
-  color: white;
+.color-click,
+.audio-click {
+  color: var(--clr-white);
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.audio-click {
+  text-align: center;
+}
+
+.audio-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+#volume-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 90%;
+  height: 1vh;
+  background: var(--clr-bg-main);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+#volume-bar:hover {
+  opacity: 1;
+}
+
+#volume-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background: var(--clr-darker-main);
+  cursor: pointer;
+}
+#volume-bar::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background: var(--clr-dark-main);
+  cursor: pointer;
+  border: 3px solid var(--clr-darker-main);
+}
+#volume-bar::-moz-range-progress {
+  background-color: var(--clr-medium-main);
+  height: 100%;
+}
+#volume-bar::-moz-range-track {
+  background-color: var(--clr-bg-main);
+  height: 100%;
 }
 
 .color-setting {
@@ -346,11 +397,11 @@ nav {
   background-color: transparent;
   border-radius: var(--brd-radius);
   color: var(--clr-white);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   position: absolute;
-  top: 0.5em;
-  right: 1rem;
+  top: 0.35em;
+  right: 0.5em;
   transition-duration: 300ms;
   pointer-events: visible;
 }
@@ -380,11 +431,30 @@ main {
   padding: 1em;
   border-radius: var(--brd-radius);
   margin-bottom: 0.5em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.volume-btn {
+  position: absolute;
+  top: 5%;
+  right: 1%;
+  color: hsla(0, 0%, 100%, 0.356);
+  transition-duration: 300ms;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+.volume-btn:hover {
+  color: var(--clr-white);
+  transform: scale(125%);
 }
 
 .timer h1 {
   color: var(--clr-white);
-  text-align: center;
   line-height: 1;
   font-size: clamp(5.5rem, 20vw, 10rem);
   font-family: "Rubik", sans-serif;
