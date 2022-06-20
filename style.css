@@ -179,7 +179,7 @@ nav {
   transition-duration: 300ms;
   transform-origin: bottom;
   background-color: hsla(var(--main-color), 60%, 5%, 98%);
-  padding: 0.5em;
+  padding: 1em 2em;
   border-radius: var(--brd-radius);
   pointer-events: none;
   width: 80%;
@@ -195,11 +195,24 @@ nav {
   top: 10%;
 }
 
+@media (max-width: 775px) {
+  .settings-menu {
+    flex-direction: column;
+    align-items: center;
+    width: unset;
+    gap: 2em;
+  }
+  .language-click {
+    margin-bottom: 0.25em;
+  }
+}
+
 .language {
   color: var(--clr-medium-main);
   font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
+  text-align: center;
 }
 .language:hover {
   filter: brightness(1.2);
@@ -254,11 +267,11 @@ nav {
   cursor: pointer;
 }
 #volume-bar::-moz-range-thumb {
-  width: 1rem;
-  height: 1rem;
+  width: 0.65rem;
+  height: 0.65rem;
   background: var(--clr-dark-main);
   cursor: pointer;
-  border: 3px solid var(--clr-darker-main);
+  border: 1px solid var(--clr-darker-main);
 }
 #volume-bar::-moz-range-progress {
   background-color: var(--clr-medium-main);
